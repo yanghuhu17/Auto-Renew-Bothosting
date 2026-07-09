@@ -184,7 +184,8 @@ def extract_expiry_date(page_source: str) -> str:
 
 #   Discord OAuth 登录（SESSION_TOKEN 失效时的备用方案）
 DISCORD_CLIENT_ID   = "884382422530158623"
-OAUTH_REDIRECT_URI  = "https://bot-hosting.net/login"
+#   OAUTH_REDIRECT_URI  = "https://bot-hosting.net/login"
+OAUTH_REDIRECT_URI  = "https://legacy.bot-hosting.net/login"
 OAUTH_SCOPE         = "identify email guilds"
 DISCORD_API         = "https://discord.com/api/v9/oauth2/authorize"
 DISCORD_UA = (
@@ -197,7 +198,8 @@ STATE_RE = re.compile(r"[?&]state=([^&]+)")
 def capture_discord_state(sb) -> str:
     """打开 /login/discord，从落地页 URL 里提取本次会话的 state"""
     print("🔎 获取 Discord OAuth state...")
-    sb.uc_open_with_reconnect("https://bot-hosting.net/login/discord", reconnect_time=4)
+    #  sb.uc_open_with_reconnect("https://bot-hosting.net/login/discord", reconnect_time=4)
+    sb.uc_open_with_reconnect("https://legacy.bot-hosting.net/login/discord", reconnect_time=4)
     time.sleep(2)
 
     url = sb.get_current_url()
